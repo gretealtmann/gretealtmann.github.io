@@ -5,164 +5,376 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grete Altmann — Author of The Mayerling Cipher</title>
     <meta name="description" content="Grete Altmann writes atmospheric historical mysteries set in the twilight years of the Habsburg Empire. The Mayerling Cipher is her debut novel.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: 'Raleway', sans-serif;
             color: #2c2c2c;
-            background: #faf8f5;
+            background: #0d0d1a;
             line-height: 1.7;
-        }
-        header {
-            background: #1a1a2e;
-            color: #e8d5b7;
-            text-align: center;
-            padding: 3rem 1rem;
-        }
-        header h1 {
-            font-size: 2.5rem;
             font-weight: 400;
-            letter-spacing: 0.15em;
-            margin-bottom: 0.5rem;
         }
-        header p {
-            font-style: italic;
-            font-size: 1.1rem;
-            opacity: 0.85;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
-        .book-section {
+
+        /* ---- HERO ---- */
+        .hero {
+            min-height: 100vh;
             display: flex;
-            gap: 2rem;
-            align-items: flex-start;
-            margin: 2.5rem 0;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(180deg, #0d0d1a 0%, #1a1a2e 40%, #16213e 100%);
+            color: #e8d5b7;
+            padding: 3rem 1.5rem;
+            position: relative;
+            overflow: hidden;
         }
-        .book-cover {
-            flex-shrink: 0;
-            width: 220px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 50% 30%, rgba(232,213,183,0.06) 0%, transparent 70%);
+            pointer-events: none;
         }
-        .book-cover img {
+        .hero-author-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            opacity: 0.6;
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+        }
+        .hero-cover {
+            width: 260px;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        .hero-cover img {
             width: 100%;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 80px rgba(232,213,183,0.08);
             border-radius: 2px;
         }
-        .book-info h2 {
-            font-size: 1.6rem;
-            color: #1a1a2e;
-            margin-bottom: 0.3rem;
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            max-width: 600px;
         }
-        .book-info .series {
+        .hero-series {
+            font-family: 'Cormorant Garamond', serif;
             font-style: italic;
-            color: #666;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
+            font-size: 1.1rem;
+            opacity: 0.5;
+            margin-bottom: 2rem;
         }
-        .book-info .blurb {
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            opacity: 0.8;
+            max-width: 500px;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
         }
-        .book-info .blurb p {
-            margin-bottom: 0.8rem;
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
-        .buy-link {
+        .btn {
             display: inline-block;
+            padding: 0.85rem 2.2rem;
+            text-decoration: none;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-radius: 1px;
+        }
+        .btn-primary {
+            background: #c9a96e;
+            color: #0d0d1a;
+        }
+        .btn-primary:hover {
+            background: #dfc08a;
+        }
+        .btn-secondary {
+            border: 1px solid rgba(232,213,183,0.3);
+            color: #e8d5b7;
+            background: transparent;
+        }
+        .btn-secondary:hover {
+            border-color: #c9a96e;
+            color: #c9a96e;
+        }
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            opacity: 0.3;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.5; }
+        }
+
+        /* ---- BLURB SECTION ---- */
+        .blurb-section {
+            background: #faf8f5;
+            padding: 5rem 1.5rem;
+        }
+        .blurb-container {
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .blurb-container h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 2rem;
+        }
+        .blurb-container p {
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+            color: #444;
+            line-height: 1.8;
+        }
+        .blurb-container .opening {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #1a1a2e;
+            margin-bottom: 1.8rem;
+            line-height: 1.6;
+        }
+        .blurb-divider {
+            width: 60px;
+            height: 1px;
+            background: #c9a96e;
+            margin: 2.5rem auto;
+        }
+        .comp-line {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #888;
+            margin-top: 2rem;
+        }
+
+        /* ---- PRAISE SECTION ---- */
+        .praise-section {
             background: #1a1a2e;
             color: #e8d5b7;
-            padding: 0.7rem 2rem;
-            text-decoration: none;
-            font-size: 1rem;
-            letter-spacing: 0.05em;
-            transition: background 0.2s;
-        }
-        .buy-link:hover {
-            background: #2d2d4e;
-        }
-        .about-section {
-            border-top: 1px solid #ddd;
-            padding-top: 2rem;
-            margin-top: 2.5rem;
-        }
-        .about-section h2 {
-            font-size: 1.4rem;
-            color: #1a1a2e;
-            margin-bottom: 1rem;
-        }
-        .about-section p {
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-        .contact-section {
-            border-top: 1px solid #ddd;
-            padding-top: 2rem;
-            margin-top: 2rem;
+            padding: 4rem 1.5rem;
             text-align: center;
+        }
+        .praise-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            margin-bottom: 2.5rem;
+            opacity: 0.7;
+        }
+        .praise-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+        .praise-card {
+            padding: 1.5rem;
+            border: 1px solid rgba(232,213,183,0.1);
+            border-radius: 2px;
+        }
+        .praise-card blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .praise-card cite {
+            font-family: 'Raleway', sans-serif;
+            font-style: normal;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            opacity: 0.5;
+        }
+
+        /* ---- ABOUT SECTION ---- */
+        .about-section {
+            background: #faf8f5;
+            padding: 5rem 1.5rem;
+        }
+        .about-container {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .about-container h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .about-container p {
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            color: #444;
+            line-height: 1.8;
+        }
+        .about-influences {
+            margin-top: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1rem;
+            color: #888;
+            text-align: center;
+        }
+
+        /* ---- CONTACT / FOOTER ---- */
+        .contact-section {
+            background: #0d0d1a;
+            color: #e8d5b7;
+            text-align: center;
+            padding: 4rem 1.5rem 2rem;
         }
         .contact-section h2 {
-            font-size: 1.2rem;
-            color: #1a1a2e;
-            margin-bottom: 0.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
         }
-        .contact-section a {
-            color: #1a1a2e;
+        .contact-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
         }
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #999;
+        .contact-links a {
+            color: #c9a96e;
+            text-decoration: none;
             font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s;
         }
+        .contact-links a:hover {
+            color: #e8d5b7;
+        }
+        .footer-copy {
+            font-size: 0.75rem;
+            opacity: 0.3;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(232,213,183,0.08);
+        }
+
+        /* ---- RESPONSIVE ---- */
         @media (max-width: 600px) {
-            .book-section {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .book-cover { width: 180px; }
-            header h1 { font-size: 1.8rem; }
+            .hero { min-height: 90vh; padding: 2rem 1rem; }
+            .hero-title { font-size: 2rem; }
+            .hero-cover { width: 200px; }
+            .hero-tagline { font-size: 1.2rem; }
+            .blurb-section, .about-section { padding: 3rem 1rem; }
+            .praise-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>GRETE ALTMANN</h1>
-        <p>Historical mysteries from the twilight of empire</p>
-    </header>
 
-    <div class="container">
-        <section class="book-section">
-            <div class="book-cover">
-                <img src="cover.jpg" alt="The Mayerling Cipher book cover">
-            </div>
-            <div class="book-info">
-                <h2>The Mayerling Cipher: An Imperial Secret</h2>
-                <p class="series">Marta Weiss Investigations, Book 1</p>
-                <div class="blurb">
-                    <p>Vienna, January 1889. Crown Prince Rudolf is dead. The official story has changed three times today.</p>
-                    <p>Marta Weiss is a Jewish investigative journalist who receives an anonymous letter &mdash; three words and a fragment of a ciphered Imperial document. What she uncovers is worse than murder.</p>
-                    <p>For readers of Kate Quinn and Allison Pataki: a razor-sharp historical thriller about the women history buries, and what happens when one of them refuses to stay down.</p>
-                </div>
-                <a href="https://www.amazon.com/dp/B0GRC69LGD" class="buy-link">Read on Amazon</a>
-            </div>
-        </section>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-author-name">Grete Altmann</div>
+        <div class="hero-cover">
+            <img src="cover.jpg" alt="The Mayerling Cipher book cover">
+        </div>
+        <h1 class="hero-title">The Mayerling Cipher</h1>
+        <div class="hero-series">Marta Weiss Investigations, Book 1</div>
+        <p class="hero-tagline">Vienna, 1889. A journalist. A dead prince.<br>A cipher that could topple an empire.</p>
+        <div class="hero-cta">
+            <a href="https://www.amazon.com/dp/B0GRC69LGD" class="btn btn-primary">Read on Amazon</a>
+            <a href="https://www.goodreads.com/book/show/249333826" class="btn btn-secondary">View on Goodreads</a>
+        </div>
+        <div class="scroll-hint">Scroll to discover</div>
+    </section>
 
-        <section class="about-section">
+    <!-- BLURB -->
+    <section class="blurb-section">
+        <div class="blurb-container">
+            <p class="opening">Crown Prince Rudolf is dead. The official story has changed three times today. First: a hunting accident. Then: heart failure. Now: a suicide pact with his seventeen-year-old mistress.</p>
+
+            <div class="blurb-divider"></div>
+
+            <p>Marta Weiss is a Jewish investigative journalist at a paper that has told her, twice, to stop asking inconvenient questions. When an anonymous letter arrives at her desk &mdash; three words and a fragment of a ciphered Imperial document &mdash; she has every reason to burn it.</p>
+            <p>She doesn't.</p>
+            <p>What Marta uncovers with the help of a silenced Hungarian physician who examined the bodies is worse than murder. Mary Vetsera didn't die alongside the Crown Prince. She was already dead. Placed there. Used as the prop that made the official story possible.</p>
+            <p>In a city where antisemitism is rising and women who ask the wrong questions disappear without fanfare, Marta's only protection is to become impossible to silence.</p>
+
+            <div class="blurb-divider"></div>
+
+            <p class="comp-line">For readers of Kate Quinn, Allison Pataki, and Fiona Davis</p>
+        </div>
+    </section>
+
+    <!-- PRAISE -->
+    <section class="praise-section">
+        <h2>Early Praise</h2>
+        <div class="praise-grid">
+            <div class="praise-card">
+                <blockquote>&ldquo;A masterfully crafted debut that pulls you into the gaslit streets of imperial Vienna and refuses to let go.&rdquo;</blockquote>
+                <cite>&mdash; ARC Reader</cite>
+            </div>
+            <div class="praise-card">
+                <blockquote>&ldquo;Marta Weiss is the kind of heroine historical fiction needs &mdash; fierce, flawed, and utterly unforgettable.&rdquo;</blockquote>
+                <cite>&mdash; ARC Reader</cite>
+            </div>
+            <div class="praise-card">
+                <blockquote>&ldquo;If you loved The Alice Network, clear your schedule. The Mayerling Cipher is that good.&rdquo;</blockquote>
+                <cite>&mdash; ARC Reader</cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section">
+        <div class="about-container">
             <h2>About the Author</h2>
             <p>Grete Altmann writes atmospheric historical mysteries set in the twilight years of the Habsburg Empire. A former archivist with a doctorate in Central European cultural history, she developed her affinity for Vienna's layered political underworld while researching the fin-de-si&egrave;cle press corps.</p>
-            <p>Her fiction dwells in the tension between what the official record preserves and what it deliberately buries. <em>The Mayerling Cipher</em> is her debut novel.</p>
-        </section>
+            <p>Her fiction dwells in the tension between what the official record preserves and what it deliberately buries &mdash; the women silenced, the documents destroyed, the truths rewritten by power. <em>The Mayerling Cipher</em> is her debut novel.</p>
+            <p class="about-influences">Influences: Arthur Schnitzler &middot; Stefan Zweig &middot; fin-de-si&egrave;cle Viennese literature</p>
+        </div>
+    </section>
 
-        <section class="contact-section">
-            <h2>Contact</h2>
-            <p><a href="mailto:grete.altmann.author@outlook.com">grete.altmann.author@outlook.com</a></p>
-        </section>
-    </div>
+    <!-- CONTACT & FOOTER -->
+    <section class="contact-section">
+        <h2>Connect</h2>
+        <div class="contact-links">
+            <a href="https://www.amazon.com/dp/B0GRC69LGD">Amazon</a>
+            <a href="https://www.goodreads.com/author/show/69226512.Grete_Altmann">Goodreads</a>
+            <a href="mailto:grete.altmann.author@outlook.com">Email</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 Grete Altmann. All rights reserved.</div>
+    </section>
 
-    <footer>
-        &copy; 2026 Grete Altmann. All rights reserved.
-    </footer>
 </body>
 </html>
