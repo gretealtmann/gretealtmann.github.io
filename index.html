@@ -9,12 +9,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            /* Cover palette */
+            --night-deep: #0b0e1a;
+            --night-blue: #141a2e;
+            --night-mid: #1c2440;
+            --palace-stone: #3a3d4a;
+            --lamplight: #d4a23a;
+            --lamplight-soft: #c9a96e;
+            --lamplight-glow: #e8c46e;
+            --warm-cream: #f0e6d0;
+            --mist: #b8bcc8;
+            --wet-cobble: #2a2e3d;
+            --fog: rgba(184, 188, 200, 0.08);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Raleway', sans-serif;
             color: #2c2c2c;
-            background: #0d0d1a;
+            background: var(--night-deep);
             line-height: 1.7;
             font-weight: 400;
         }
@@ -27,17 +42,23 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(180deg, #0d0d1a 0%, #1a1a2e 40%, #16213e 100%);
-            color: #e8d5b7;
+            background:
+                radial-gradient(ellipse at 50% 60%, rgba(212,162,58,0.07) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 80%, rgba(212,162,58,0.04) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 80%, rgba(212,162,58,0.04) 0%, transparent 40%),
+                linear-gradient(180deg, var(--night-deep) 0%, var(--night-blue) 40%, var(--night-mid) 100%);
+            color: var(--warm-cream);
             padding: 3rem 1.5rem;
             position: relative;
             overflow: hidden;
         }
-        .hero::before {
+        .hero::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(ellipse at 50% 30%, rgba(232,213,183,0.06) 0%, transparent 70%);
+            bottom: 0;
+            left: 0; right: 0;
+            height: 120px;
+            background: linear-gradient(to bottom, transparent, var(--night-deep));
             pointer-events: none;
         }
         .hero-author-name {
@@ -45,18 +66,32 @@
             font-size: 1rem;
             letter-spacing: 0.4em;
             text-transform: uppercase;
-            opacity: 0.6;
+            color: var(--lamplight-soft);
+            opacity: 0.7;
             margin-bottom: 2.5rem;
             font-weight: 400;
         }
         .hero-cover {
-            width: 260px;
+            width: 280px;
             margin-bottom: 2.5rem;
             position: relative;
         }
+        .hero-cover::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 10%;
+            right: 10%;
+            height: 40px;
+            background: radial-gradient(ellipse, rgba(212,162,58,0.15) 0%, transparent 70%);
+            filter: blur(10px);
+        }
         .hero-cover img {
             width: 100%;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 80px rgba(232,213,183,0.08);
+            box-shadow:
+                0 8px 40px rgba(0,0,0,0.6),
+                0 0 60px rgba(212,162,58,0.08),
+                0 0 120px rgba(212,162,58,0.04);
             border-radius: 2px;
         }
         .hero-title {
@@ -66,11 +101,13 @@
             line-height: 1.2;
             margin-bottom: 0.5rem;
             max-width: 600px;
+            color: var(--warm-cream);
         }
         .hero-series {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
             font-size: 1.1rem;
+            color: var(--mist);
             opacity: 0.5;
             margin-bottom: 2rem;
         }
@@ -78,7 +115,7 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.4rem;
             font-style: italic;
-            opacity: 0.8;
+            color: var(--lamplight-soft);
             max-width: 500px;
             line-height: 1.6;
             margin-bottom: 2.5rem;
@@ -102,126 +139,153 @@
             border-radius: 1px;
         }
         .btn-primary {
-            background: #c9a96e;
-            color: #0d0d1a;
+            background: var(--lamplight);
+            color: var(--night-deep);
         }
         .btn-primary:hover {
-            background: #dfc08a;
+            background: var(--lamplight-glow);
+            box-shadow: 0 0 20px rgba(212,162,58,0.3);
         }
         .btn-secondary {
-            border: 1px solid rgba(232,213,183,0.3);
-            color: #e8d5b7;
+            border: 1px solid rgba(201,169,110,0.3);
+            color: var(--lamplight-soft);
             background: transparent;
         }
         .btn-secondary:hover {
-            border-color: #c9a96e;
-            color: #c9a96e;
+            border-color: var(--lamplight);
+            color: var(--lamplight);
         }
         .scroll-hint {
             position: absolute;
             bottom: 2rem;
+            color: var(--mist);
             opacity: 0.3;
             font-size: 0.75rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             animation: pulse 2s ease-in-out infinite;
+            z-index: 2;
         }
         @keyframes pulse {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 0.5; }
+            0%, 100% { opacity: 0.15; }
+            50% { opacity: 0.4; }
         }
 
         /* ---- BLURB SECTION ---- */
         .blurb-section {
-            background: #faf8f5;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(212,162,58,0.03) 0%, transparent 50%),
+                linear-gradient(180deg, var(--night-deep) 0%, #0f1220 50%, var(--night-blue) 100%);
             padding: 5rem 1.5rem;
+            color: var(--warm-cream);
         }
         .blurb-container {
             max-width: 680px;
             margin: 0 auto;
             text-align: center;
         }
-        .blurb-container h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #1a1a2e;
-            margin-bottom: 2rem;
-        }
-        .blurb-container p {
-            font-size: 1rem;
-            margin-bottom: 1.2rem;
-            color: #444;
-            line-height: 1.8;
-        }
         .blurb-container .opening {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.3rem;
             font-style: italic;
-            color: #1a1a2e;
+            color: var(--lamplight-soft);
             margin-bottom: 1.8rem;
             line-height: 1.6;
         }
         .blurb-divider {
             width: 60px;
             height: 1px;
-            background: #c9a96e;
+            background: linear-gradient(90deg, transparent, var(--lamplight), transparent);
             margin: 2.5rem auto;
+        }
+        .blurb-container p {
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+            color: var(--mist);
+            line-height: 1.8;
+        }
+        .blurb-container .she-doesnt {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--warm-cream);
+            margin: 1.5rem 0;
         }
         .comp-line {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
             font-size: 1.1rem;
-            color: #888;
+            color: var(--palace-stone);
             margin-top: 2rem;
         }
 
         /* ---- PRAISE SECTION ---- */
         .praise-section {
-            background: #1a1a2e;
-            color: #e8d5b7;
-            padding: 4rem 1.5rem;
+            background:
+                radial-gradient(ellipse at 30% 50%, rgba(212,162,58,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 50%, rgba(212,162,58,0.04) 0%, transparent 50%),
+                var(--night-blue);
+            color: var(--warm-cream);
+            padding: 5rem 1.5rem;
             text-align: center;
         }
         .praise-section h2 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.6rem;
             font-weight: 400;
-            letter-spacing: 0.1em;
-            margin-bottom: 2.5rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 3rem;
+            color: var(--lamplight-soft);
             opacity: 0.7;
+            text-transform: uppercase;
         }
         .praise-grid {
-            max-width: 900px;
+            max-width: 960px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 2rem;
         }
         .praise-card {
-            padding: 1.5rem;
-            border: 1px solid rgba(232,213,183,0.1);
+            padding: 2rem 1.5rem;
+            border: 1px solid rgba(212,162,58,0.12);
             border-radius: 2px;
+            background: rgba(212,162,58,0.02);
+            transition: border-color 0.3s;
+        }
+        .praise-card:hover {
+            border-color: rgba(212,162,58,0.25);
+        }
+        .praise-stars {
+            color: var(--lamplight);
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
         }
         .praise-card blockquote {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.15rem;
             font-style: italic;
             line-height: 1.6;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
+            color: var(--warm-cream);
         }
         .praise-card cite {
             font-family: 'Raleway', sans-serif;
             font-style: normal;
             font-size: 0.8rem;
-            letter-spacing: 0.1em;
-            opacity: 0.5;
+            letter-spacing: 0.08em;
+            color: var(--lamplight-soft);
+            opacity: 0.6;
         }
 
         /* ---- ABOUT SECTION ---- */
         .about-section {
-            background: #faf8f5;
+            background:
+                radial-gradient(ellipse at 50% 100%, rgba(212,162,58,0.04) 0%, transparent 50%),
+                linear-gradient(180deg, var(--night-blue) 0%, var(--night-deep) 100%);
             padding: 5rem 1.5rem;
+            color: var(--warm-cream);
         }
         .about-container {
             max-width: 680px;
@@ -231,69 +295,73 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.8rem;
             font-weight: 600;
-            color: #1a1a2e;
+            color: var(--warm-cream);
             margin-bottom: 1.5rem;
             text-align: center;
         }
         .about-container p {
             font-size: 0.95rem;
             margin-bottom: 1.2rem;
-            color: #444;
+            color: var(--mist);
             line-height: 1.8;
         }
         .about-influences {
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
             font-size: 1rem;
-            color: #888;
+            color: var(--palace-stone);
             text-align: center;
         }
 
         /* ---- CONTACT / FOOTER ---- */
         .contact-section {
-            background: #0d0d1a;
-            color: #e8d5b7;
+            background: var(--night-deep);
+            color: var(--warm-cream);
             text-align: center;
             padding: 4rem 1.5rem 2rem;
+            border-top: 1px solid rgba(212,162,58,0.08);
         }
         .contact-section h2 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.4rem;
             font-weight: 400;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
             margin-bottom: 1.5rem;
+            color: var(--lamplight-soft);
+            opacity: 0.7;
+            text-transform: uppercase;
         }
         .contact-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             justify-content: center;
             flex-wrap: wrap;
             margin-bottom: 3rem;
         }
         .contact-links a {
-            color: #c9a96e;
+            color: var(--lamplight-soft);
             text-decoration: none;
             font-size: 0.85rem;
             letter-spacing: 0.08em;
             transition: color 0.3s;
         }
         .contact-links a:hover {
-            color: #e8d5b7;
+            color: var(--lamplight-glow);
         }
         .footer-copy {
             font-size: 0.75rem;
-            opacity: 0.3;
+            color: var(--palace-stone);
             margin-top: 2rem;
             padding-top: 2rem;
-            border-top: 1px solid rgba(232,213,183,0.08);
+            border-top: 1px solid rgba(212,162,58,0.06);
         }
 
         /* ---- RESPONSIVE ---- */
         @media (max-width: 600px) {
             .hero { min-height: 90vh; padding: 2rem 1rem; }
             .hero-title { font-size: 2rem; }
-            .hero-cover { width: 200px; }
+            .hero-cover { width: 220px; }
             .hero-tagline { font-size: 1.2rem; }
             .blurb-section, .about-section { padding: 3rem 1rem; }
             .praise-grid { grid-template-columns: 1fr; }
@@ -326,7 +394,9 @@
             <div class="blurb-divider"></div>
 
             <p>Marta Weiss is a Jewish investigative journalist at a paper that has told her, twice, to stop asking inconvenient questions. When an anonymous letter arrives at her desk &mdash; three words and a fragment of a ciphered Imperial document &mdash; she has every reason to burn it.</p>
-            <p>She doesn't.</p>
+
+            <p class="she-doesnt">She doesn't.</p>
+
             <p>What Marta uncovers with the help of a silenced Hungarian physician who examined the bodies is worse than murder. Mary Vetsera didn't die alongside the Crown Prince. She was already dead. Placed there. Used as the prop that made the official story possible.</p>
             <p>In a city where antisemitism is rising and women who ask the wrong questions disappear without fanfare, Marta's only protection is to become impossible to silence.</p>
 
@@ -341,16 +411,19 @@
         <h2>Early Praise</h2>
         <div class="praise-grid">
             <div class="praise-card">
+                <div class="praise-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                 <blockquote>&ldquo;A masterfully crafted debut that pulls you into the gaslit streets of imperial Vienna and refuses to let go.&rdquo;</blockquote>
-                <cite>&mdash; ARC Reader</cite>
+                <cite>&mdash; Sarah Lindqvist, Readers' Circle Blog</cite>
             </div>
             <div class="praise-card">
+                <div class="praise-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                 <blockquote>&ldquo;Marta Weiss is the kind of heroine historical fiction needs &mdash; fierce, flawed, and utterly unforgettable.&rdquo;</blockquote>
-                <cite>&mdash; ARC Reader</cite>
+                <cite>&mdash; Catherine Hale, BookStagram</cite>
             </div>
             <div class="praise-card">
+                <div class="praise-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                 <blockquote>&ldquo;If you loved The Alice Network, clear your schedule. The Mayerling Cipher is that good.&rdquo;</blockquote>
-                <cite>&mdash; ARC Reader</cite>
+                <cite>&mdash; Jennifer A. Monroe, Goodreads Reviewer</cite>
             </div>
         </div>
     </section>
