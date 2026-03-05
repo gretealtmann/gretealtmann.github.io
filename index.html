@@ -10,31 +10,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Cover palette */
             --night-deep: #0b0e1a;
             --night-blue: #141a2e;
             --night-mid: #1c2440;
-            --palace-stone: #3a3d4a;
             --lamplight: #d4a23a;
             --lamplight-soft: #c9a96e;
             --lamplight-glow: #e8c46e;
             --warm-cream: #f0e6d0;
+            --parchment: #f5f0e8;
+            --parchment-dark: #e8e0d0;
             --mist: #b8bcc8;
-            --wet-cobble: #2a2e3d;
-            --fog: rgba(184, 188, 200, 0.08);
+            --text-dark: #2c2a26;
+            --text-mid: #5a574e;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Raleway', sans-serif;
-            color: #2c2c2c;
-            background: var(--night-deep);
+            color: var(--text-dark);
+            background: var(--parchment);
             line-height: 1.7;
             font-weight: 400;
         }
 
-        /* ---- HERO ---- */
+        /* ---- HERO (dark, matches cover) ---- */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -43,23 +43,12 @@
             align-items: center;
             text-align: center;
             background:
-                radial-gradient(ellipse at 50% 60%, rgba(212,162,58,0.07) 0%, transparent 50%),
-                radial-gradient(ellipse at 20% 80%, rgba(212,162,58,0.04) 0%, transparent 40%),
-                radial-gradient(ellipse at 80% 80%, rgba(212,162,58,0.04) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 60%, rgba(212,162,58,0.06) 0%, transparent 50%),
                 linear-gradient(180deg, var(--night-deep) 0%, var(--night-blue) 40%, var(--night-mid) 100%);
             color: var(--warm-cream);
-            padding: 3rem 1.5rem;
+            padding: 4rem 1.5rem 6rem;
             position: relative;
             overflow: hidden;
-        }
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0; right: 0;
-            height: 120px;
-            background: linear-gradient(to bottom, transparent, var(--night-deep));
-            pointer-events: none;
         }
         .hero-author-name {
             font-family: 'Cormorant Garamond', serif;
@@ -69,29 +58,16 @@
             color: var(--lamplight-soft);
             opacity: 0.7;
             margin-bottom: 2.5rem;
-            font-weight: 400;
         }
         .hero-cover {
             width: 280px;
             margin-bottom: 2.5rem;
-            position: relative;
-        }
-        .hero-cover::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 10%;
-            right: 10%;
-            height: 40px;
-            background: radial-gradient(ellipse, rgba(212,162,58,0.15) 0%, transparent 70%);
-            filter: blur(10px);
         }
         .hero-cover img {
             width: 100%;
             box-shadow:
                 0 8px 40px rgba(0,0,0,0.6),
-                0 0 60px rgba(212,162,58,0.08),
-                0 0 120px rgba(212,162,58,0.04);
+                0 0 60px rgba(212,162,58,0.08);
             border-radius: 2px;
         }
         .hero-title {
@@ -100,8 +76,6 @@
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 0.5rem;
-            max-width: 600px;
-            color: var(--warm-cream);
         }
         .hero-series {
             font-family: 'Cormorant Garamond', serif;
@@ -159,82 +133,76 @@
             position: absolute;
             bottom: 2rem;
             color: var(--mist);
-            opacity: 0.3;
-            font-size: 0.75rem;
+            opacity: 0.25;
+            font-size: 0.7rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            animation: pulse 2s ease-in-out infinite;
-            z-index: 2;
+            animation: pulse 2.5s ease-in-out infinite;
         }
         @keyframes pulse {
-            0%, 100% { opacity: 0.15; }
-            50% { opacity: 0.4; }
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
         }
 
-        /* ---- BLURB SECTION ---- */
+        /* ---- BLURB (light parchment) ---- */
         .blurb-section {
-            background:
-                radial-gradient(ellipse at 50% 0%, rgba(212,162,58,0.03) 0%, transparent 50%),
-                linear-gradient(180deg, var(--night-deep) 0%, #0f1220 50%, var(--night-blue) 100%);
+            background: var(--parchment);
             padding: 5rem 1.5rem;
-            color: var(--warm-cream);
         }
         .blurb-container {
-            max-width: 680px;
+            max-width: 650px;
             margin: 0 auto;
             text-align: center;
         }
         .blurb-container .opening {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-style: italic;
-            color: var(--lamplight-soft);
+            color: var(--text-dark);
             margin-bottom: 1.8rem;
             line-height: 1.6;
         }
         .blurb-divider {
-            width: 60px;
+            width: 50px;
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--lamplight), transparent);
+            background: var(--lamplight-soft);
             margin: 2.5rem auto;
+            opacity: 0.5;
         }
         .blurb-container p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             margin-bottom: 1.2rem;
-            color: var(--mist);
-            line-height: 1.8;
+            color: var(--text-mid);
+            line-height: 1.85;
         }
         .blurb-container .she-doesnt {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-style: italic;
-            color: var(--warm-cream);
+            color: var(--text-dark);
             margin: 1.5rem 0;
         }
         .comp-line {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
-            font-size: 1.1rem;
-            color: var(--palace-stone);
+            font-size: 1.05rem;
+            color: var(--lamplight-soft);
             margin-top: 2rem;
         }
 
-        /* ---- PRAISE SECTION ---- */
+        /* ---- PRAISE (dark accent band) ---- */
         .praise-section {
-            background:
-                radial-gradient(ellipse at 30% 50%, rgba(212,162,58,0.04) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 50%, rgba(212,162,58,0.04) 0%, transparent 50%),
-                var(--night-blue);
+            background: var(--night-blue);
             color: var(--warm-cream);
-            padding: 5rem 1.5rem;
+            padding: 4.5rem 1.5rem;
             text-align: center;
         }
         .praise-section h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 400;
             letter-spacing: 0.15em;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             color: var(--lamplight-soft);
             opacity: 0.7;
             text-transform: uppercase;
@@ -244,92 +212,82 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2rem;
+            gap: 1.5rem;
         }
         .praise-card {
-            padding: 2rem 1.5rem;
+            padding: 1.8rem 1.5rem;
             border: 1px solid rgba(212,162,58,0.12);
             border-radius: 2px;
-            background: rgba(212,162,58,0.02);
-            transition: border-color 0.3s;
-        }
-        .praise-card:hover {
-            border-color: rgba(212,162,58,0.25);
         }
         .praise-stars {
             color: var(--lamplight);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 0.15em;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
         .praise-card blockquote {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-style: italic;
             line-height: 1.6;
-            margin-bottom: 1.2rem;
-            color: var(--warm-cream);
+            margin-bottom: 1rem;
         }
         .praise-card cite {
             font-family: 'Raleway', sans-serif;
             font-style: normal;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             letter-spacing: 0.08em;
             color: var(--lamplight-soft);
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
-        /* ---- ABOUT SECTION ---- */
+        /* ---- ABOUT (light parchment) ---- */
         .about-section {
-            background:
-                radial-gradient(ellipse at 50% 100%, rgba(212,162,58,0.04) 0%, transparent 50%),
-                linear-gradient(180deg, var(--night-blue) 0%, var(--night-deep) 100%);
+            background: var(--parchment);
             padding: 5rem 1.5rem;
-            color: var(--warm-cream);
         }
         .about-container {
-            max-width: 680px;
+            max-width: 650px;
             margin: 0 auto;
         }
         .about-container h2 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.8rem;
             font-weight: 600;
-            color: var(--warm-cream);
+            color: var(--text-dark);
             margin-bottom: 1.5rem;
             text-align: center;
         }
         .about-container p {
             font-size: 0.95rem;
             margin-bottom: 1.2rem;
-            color: var(--mist);
-            line-height: 1.8;
+            color: var(--text-mid);
+            line-height: 1.85;
         }
         .about-influences {
             margin-top: 2rem;
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
             font-size: 1rem;
-            color: var(--palace-stone);
+            color: var(--lamplight-soft);
             text-align: center;
         }
 
-        /* ---- CONTACT / FOOTER ---- */
+        /* ---- CONTACT / FOOTER (dark) ---- */
         .contact-section {
             background: var(--night-deep);
             color: var(--warm-cream);
             text-align: center;
-            padding: 4rem 1.5rem 2rem;
-            border-top: 1px solid rgba(212,162,58,0.08);
+            padding: 3.5rem 1.5rem 2rem;
         }
         .contact-section h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 400;
             letter-spacing: 0.15em;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             color: var(--lamplight-soft);
-            opacity: 0.7;
+            opacity: 0.6;
             text-transform: uppercase;
         }
         .contact-links {
@@ -337,7 +295,7 @@
             gap: 2.5rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
         }
         .contact-links a {
             color: var(--lamplight-soft);
@@ -350,16 +308,16 @@
             color: var(--lamplight-glow);
         }
         .footer-copy {
-            font-size: 0.75rem;
-            color: var(--palace-stone);
-            margin-top: 2rem;
-            padding-top: 2rem;
+            font-size: 0.7rem;
+            color: rgba(184,188,200,0.25);
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
             border-top: 1px solid rgba(212,162,58,0.06);
         }
 
         /* ---- RESPONSIVE ---- */
         @media (max-width: 600px) {
-            .hero { min-height: 90vh; padding: 2rem 1rem; }
+            .hero { min-height: 90vh; padding: 2rem 1rem 5rem; }
             .hero-title { font-size: 2rem; }
             .hero-cover { width: 220px; }
             .hero-tagline { font-size: 1.2rem; }
@@ -383,7 +341,7 @@
             <a href="https://www.amazon.com/dp/B0GRC69LGD" class="btn btn-primary">Read on Amazon</a>
             <a href="https://www.goodreads.com/book/show/249333826" class="btn btn-secondary">View on Goodreads</a>
         </div>
-        <div class="scroll-hint">Scroll to discover</div>
+        <div class="scroll-hint">&#8595;</div>
     </section>
 
     <!-- BLURB -->
