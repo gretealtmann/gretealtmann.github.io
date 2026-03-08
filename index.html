@@ -190,55 +190,34 @@
             margin-top: 2rem;
         }
 
-        /* ---- PRAISE (dark accent band) ---- */
-        .praise-section {
+        /* ---- READ IT (dark accent band) ---- */
+        .read-section {
             background: var(--night-blue);
             color: var(--warm-cream);
-            padding: 4.5rem 1.5rem;
+            padding: 5rem 1.5rem;
             text-align: center;
         }
-        .praise-section h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 400;
-            letter-spacing: 0.15em;
-            margin-bottom: 2.5rem;
-            color: var(--lamplight-soft);
-            opacity: 0.7;
-            text-transform: uppercase;
-        }
-        .praise-grid {
-            max-width: 960px;
+        .read-container {
+            max-width: 550px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
         }
-        .praise-card {
-            padding: 1.8rem 1.5rem;
-            border: 1px solid rgba(212,162,58,0.12);
-            border-radius: 2px;
-        }
-        .praise-stars {
-            color: var(--lamplight);
-            font-size: 0.8rem;
-            letter-spacing: 0.15em;
-            margin-bottom: 0.8rem;
-        }
-        .praise-card blockquote {
+        .read-container h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            font-style: italic;
-            line-height: 1.6;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
         }
-        .praise-card cite {
-            font-family: 'Raleway', sans-serif;
-            font-style: normal;
-            font-size: 0.75rem;
-            letter-spacing: 0.08em;
-            color: var(--lamplight-soft);
-            opacity: 0.5;
+        .read-container p {
+            font-size: 0.95rem;
+            color: var(--mist);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        .read-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         /* ---- ABOUT (light parchment) ---- */
@@ -364,24 +343,14 @@
         </div>
     </section>
 
-    <!-- PRAISE -->
-    <section class="praise-section">
-        <h2>Early Praise</h2>
-        <div class="praise-grid">
-            <div class="praise-card">
-                <div class="praise-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <blockquote>&ldquo;A masterfully crafted debut that pulls you into the gaslit streets of imperial Vienna and refuses to let go.&rdquo;</blockquote>
-                <cite>&mdash; Sarah Lindqvist, Readers' Circle Blog</cite>
-            </div>
-            <div class="praise-card">
-                <div class="praise-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <blockquote>&ldquo;Marta Weiss is the kind of heroine historical fiction needs &mdash; fierce, flawed, and utterly unforgettable.&rdquo;</blockquote>
-                <cite>&mdash; Catherine Hale, BookStagram</cite>
-            </div>
-            <div class="praise-card">
-                <div class="praise-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <blockquote>&ldquo;If you loved The Alice Network, clear your schedule. The Mayerling Cipher is that good.&rdquo;</blockquote>
-                <cite>&mdash; Jennifer A. Monroe, Goodreads Reviewer</cite>
+    <!-- READ IT -->
+    <section class="read-section">
+        <div class="read-container">
+            <h2>Start Reading Today</h2>
+            <p>Available now as ebook on Amazon Kindle. Dive into the gaslit streets of imperial Vienna and follow Marta Weiss as she unravels the conspiracy behind the Crown Prince's death.</p>
+            <div class="read-cta">
+                <a href="https://www.amazon.com/dp/B0GRC69LGD" class="btn btn-primary">Get the Book</a>
+                <a href="https://www.goodreads.com/book/show/249333826" class="btn btn-secondary">Add to Goodreads</a>
             </div>
         </div>
     </section>
